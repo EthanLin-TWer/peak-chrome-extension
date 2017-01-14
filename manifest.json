@@ -5,6 +5,16 @@
   "description": "An extension that gives me feedback when I am trying to visit GMail or Github to kill time",
   "version": "0.0.1",
 
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": ["src/peak.main.js"]
+    }
+  ],
+  
   "browser_action": {
     "default_title": "You shouldn't be viewing this, go back to work",
     "default_icon": "icons/icon48.png",
