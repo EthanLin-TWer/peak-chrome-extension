@@ -4,7 +4,8 @@ let activeTabUrl = window.location.href
 let landTime = new Date().toString().match(/(\d{2}:\d{2}:\d{2})/)[1]
 
 if (activeTabUrl.includes('https://mail.google.com/mail/u/') ||
-   activeTabUrl.includes('https://github.com/linesh-simplicity')) {
+   activeTabUrl.includes('https://github.com/linesh-simplicity') ||
+   activeTabUrl.includes('https://github.com/linesh-simplicity/linesh-simplicity.github.io/issues')) {
    alert('Welcome to ' + activeTabUrl)
 }
 
