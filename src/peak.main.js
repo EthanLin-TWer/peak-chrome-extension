@@ -9,5 +9,10 @@ if (activeTabUrl.includes('https://mail.google.com/mail/u/') ||
    alert('Welcome to ' + activeTabUrl)
 }
 
+window.onbeforeunload = () => {
+   "use strict";
+   return ''
+}
+
 console.log(activeTabUrl)
 console.log('land time: ' + landTime)
