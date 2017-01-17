@@ -8,7 +8,7 @@ let landTime = new Date()
 
 chrome.storage.local.get(null, (data) => {
    "use strict";
-   entryOfToday = data[today(landTime)] ? data[today(landTime)] : {}
+   entryOfToday = data[today(landTime)] ? data[today(landTime)] : newEntry(landTime)
    console.log(entryOfToday)
 })
 
@@ -22,13 +22,30 @@ window.onbeforeunload = () => {
    "use strict";
    let leaveTime = new Date()
    let data = {
-      activeTabUrl, landTime, leaveTime, 
+      activeTabUrl, landTime, leaveTime,
       duration: leaveTime - landTime
    }
    entryOfToday[today(landTime)] = data
-   chrome.storage.local.set(entryOfToday , () => {
+   chrome.storage.local.set(entryOfToday, () => {
       console.log(entryOfToday)
    })
+}
+
+function newEntry(time) {
+   let newEntry = {}
+   let entryKey = today(time)
+
+   newEntry[entryKey] = [] // one item per site on monitoring list 
+   newEntry[entryKey].push({
+      activeURL: '',
+      visits: [{
+         landTime: -1,
+         leaveTime: -1,
+         duration: -1
+      }] // one item per visit to one same site
+   })
+
+   return newEntry
 }
 
 function today(time) {
