@@ -21,13 +21,13 @@ window.onbeforeunload = () => {
    "use strict";
    let leaveTime = new Date()
    let data = {
-      landTime, leaveTime, activeTabUrl,
+      activeTabUrl, landTime, leaveTime, 
       duration: leaveTime - landTime
    }
-   let tem = {}
-   tem[today(landTime)] = data
-   chrome.storage.local.set(tem , () => {
-      console.log(tem)
+   let entry = {}
+   entry[today(landTime)] = data
+   chrome.storage.local.set(entry , () => {
+      console.log(entry)
    })
 }
 
