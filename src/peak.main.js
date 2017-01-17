@@ -1,17 +1,33 @@
 console.log('content script is working')
 
+chrome.storage.local.get(null, (data) => {
+   "use strict";
+   chrome.storage.local.clear()
+   console.log('storage read')
+   console.log(data)
+})
 let activeTabUrl = window.location.href
-let landTime = new Date().toString().match(/(\d{2}:\d{2}:\d{2})/)[1]
+let landTime = new Date()
 
 if (activeTabUrl.includes('https://mail.google.com/mail/u/') ||
    activeTabUrl.includes('https://github.com/linesh-simplicity') ||
    activeTabUrl.includes('https://github.com/linesh-simplicity/linesh-simplicity.github.io/issues')) {
-   alert('Welcome to ' + activeTabUrl)
+   console.log('Welcome to ' + activeTabUrl)
 }
 
 window.onbeforeunload = () => {
    "use strict";
-   return ''
+   let leaveTime = new Date()
+   let data = {
+      landTime, leaveTime, activeTabUrl,
+      duration: leaveTime - landTime
+   }
+   let today = landTime.toLocaleDateString()
+   let tem = {}
+   tem[today] = data
+   chrome.storage.local.set({ tem }, () => {
+      console.log(tem)
+   })
 }
 
 console.log(activeTabUrl)
