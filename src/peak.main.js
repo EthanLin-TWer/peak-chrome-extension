@@ -9,6 +9,7 @@ let landTime = new Date()
 chrome.storage.local.get(null, (data) => {
    "use strict";
    entryOfToday = data[today(landTime)] ? data[today(landTime)] : newEntry(landTime)
+   console.log('entry of today:')
    console.log(entryOfToday)
 })
 
@@ -22,10 +23,12 @@ window.onbeforeunload = () => {
    "use strict";
    let leaveTime = new Date()
    let data = {
-      activeTabUrl, landTime, leaveTime,
+      activeTabUrl, 
+      landTime: landTime.toISOString(), 
+      leaveTime: leaveTime.toISOString(),
       duration: leaveTime - landTime
    }
-   entryOfToday[today(landTime)] = data
+   entryOfToday[today(landTime)].push(data)
    chrome.storage.local.set(entryOfToday, () => {
       console.log(entryOfToday)
    })
