@@ -2,14 +2,15 @@
 
 console.log('content script is working')
 
-chrome.storage.local.get(null, (data) => {
-   "use strict";
-   chrome.storage.local.clear()
-   console.log('storage read')
-   console.log(data)
-})
+let entryOfToday // initialized after getting data from local storage
 let activeTabUrl = window.location.href
 let landTime = new Date()
+
+chrome.storage.local.get(null, (data) => {
+   "use strict";
+   entryOfToday = data[today(landTime)] ? data[today(landTime)] : {}
+   console.log(entryOfToday)
+})
 
 if (activeTabUrl.includes('https://mail.google.com/mail/u/') ||
    activeTabUrl.includes('https://github.com/linesh-simplicity') ||
@@ -24,15 +25,11 @@ window.onbeforeunload = () => {
       activeTabUrl, landTime, leaveTime, 
       duration: leaveTime - landTime
    }
-   let entry = {}
-   entry[today(landTime)] = data
-   chrome.storage.local.set(entry , () => {
-      console.log(entry)
+   entryOfToday[today(landTime)] = data
+   chrome.storage.local.set(entryOfToday , () => {
+      console.log(entryOfToday)
    })
 }
-
-console.log(activeTabUrl)
-console.log('land time: ' + landTime)
 
 function today(time) {
    return time.toLocaleDateString()
