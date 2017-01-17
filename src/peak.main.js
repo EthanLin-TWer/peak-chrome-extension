@@ -36,18 +36,9 @@ window.onbeforeunload = () => {
 
 function newEntry(time) {
    let newEntry = {}
-   let entryKey = today(time)
+   let keyToday = today(time)
 
-   newEntry[entryKey] = [] // one item per site on monitoring list 
-   newEntry[entryKey].push({
-      activeURL: '',
-      visits: [{
-         landTime: -1,
-         leaveTime: -1,
-         duration: -1
-      }] // one item per visit to one same site
-   })
-
+   newEntry[keyToday] = [] 
    return newEntry
 }
 
