@@ -2,7 +2,7 @@
 
 console.log('content script is working')
 
-let entryOfToday // initialized after getting data from local storage
+var entryOfToday // initialized after getting data from local storage
 let activeTabUrl = window.location.href
 let landTime = new Date()
 
@@ -22,14 +22,37 @@ if (activeTabUrl.includes('https://mail.google.com/mail/u/') ||
 window.onbeforeunload = () => {
    "use strict";
    let leaveTime = new Date()
-   let data = {
-      activeTabUrl, 
-      landTime: landTime.toISOString(), 
+   let visit = {
+      landTime: landTime.toISOString(),
       leaveTime: leaveTime.toISOString(),
       duration: leaveTime - landTime
+   }  
+
+   let key = today(landTime)
+   console.log('key: ' + key)
+   console.log(entryOfToday)
+   console.log('entryoftoday: ' + entryOfToday)
+   let found = entryOfToday.find(entry => entry.activeTabUrl === activeTabUrl)
+   if (found) {
+      found.visits.push(visit)
+      found.totalVisitCounts = found.visits.length
+      
+      console.log('entry of today exists already, printing...')
+      console.log(found)
+   } else {
+      entryOfToday.push({
+         activeTabUrl,
+         visits: [ ],
+         totalVisitCounts: 1
+      })
+      entryOfToday[0].visits.push(visit)
+      
+      console.log('entry of today not exists, printing...')
+      console.log(entryOfToday[0])
    }
-   entryOfToday[today(landTime)].push(data)
+
    chrome.storage.local.set(entryOfToday, () => {
+      console.log('local storage set:')
       console.log(entryOfToday)
    })
 }
@@ -38,7 +61,7 @@ function newEntry(time) {
    let newEntry = {}
    let keyToday = today(time)
 
-   newEntry[keyToday] = [] 
+   newEntry[keyToday] = []
    return newEntry
 }
 
