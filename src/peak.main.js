@@ -1,3 +1,5 @@
+"use strict";
+
 console.log('content script is working')
 
 chrome.storage.local.get(null, (data) => {
@@ -22,13 +24,16 @@ window.onbeforeunload = () => {
       landTime, leaveTime, activeTabUrl,
       duration: leaveTime - landTime
    }
-   let today = landTime.toLocaleDateString()
    let tem = {}
-   tem[today] = data
-   chrome.storage.local.set({ tem }, () => {
+   tem[today(landTime)] = data
+   chrome.storage.local.set(tem , () => {
       console.log(tem)
    })
 }
 
 console.log(activeTabUrl)
 console.log('land time: ' + landTime)
+
+function today(time) {
+   return time.toLocaleDateString()
+}
