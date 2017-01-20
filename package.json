@@ -25,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/linesh-simplicity/peak-chrome-plugin/issues"
   },
-  "homepage": "https://github.com/linesh-simplicity/peak-chrome-plugin#readme"
+  "homepage": "https://github.com/linesh-simplicity/peak-chrome-plugin#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
 }
