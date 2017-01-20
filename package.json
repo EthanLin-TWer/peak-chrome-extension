@@ -1,0 +1,29 @@
+{
+  "name": "peak-chrome-plugin",
+  "version": "0.0.1",
+  "description": "An extension that gives me feedback when I am trying to visit GMail or Github to kill time.",
+  "main": "src/peak.main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/**/*.spec.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linesh-simplicity/peak-chrome-plugin.git"
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "peak",
+    "time",
+    "focus"
+  ],
+  "author": "Linesh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/linesh-simplicity/peak-chrome-plugin/issues"
+  },
+  "homepage": "https://github.com/linesh-simplicity/peak-chrome-plugin#readme"
+}
