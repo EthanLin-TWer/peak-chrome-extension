@@ -1,7 +1,7 @@
-let what = require('./what');
+import what from './what'
 "use strict";
 
-console.log(what.what())
+console.log(what())
 var entryOfToday // initialized after getting data from local storage
 let activeTabUrl = window.location.href
 let landTime = new Date()

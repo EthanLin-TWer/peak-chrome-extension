@@ -1,6 +1,4 @@
-module.exports = {
-   what() {
-      "use strict";
-      console.log('require works')
-   }
+export default () => {
+   "use strict";
+   console.log('ES6 import works in Chrome')
 }
