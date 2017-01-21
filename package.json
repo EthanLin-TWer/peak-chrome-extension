@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "mocha test/*.spec.js --require babel-register",
-    "build": "watchify src/peak.main.js -o dist/peak.min.js -t babelify"
+    "build": "browserify src/peak.main.js -o dist/peak.min.js -t babelify",
+    "buildDev": "watchify src/peak.main.js -o dist/peak.min.js -t babelify"
   },
   "repository": {
     "type": "git",
