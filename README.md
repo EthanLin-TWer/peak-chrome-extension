@@ -7,12 +7,22 @@
 
 就此。
 
+## 本地开发 Local development 
+
+### 持续构建 Continuous build
+
+### 持续测试及反馈 Continuous testing & feedback
+
 ## 构建 Build
+
+项目使用 Travis 进行流水线构建。如果项目下存在 `yarn.lock` 文件，Travis 默认会使用 yarn 来安装 npm 依赖。`npm test` 会被用来作为默认的测试命令，其实是直接调用的 mocha + babel 来进行 ES6 代码的测试。
+
+产品代码方面，主要是使用了 Browserify + Babelify 来转译 ES6 代码到浏览器上，因为当前 `import/export` 仍然未能在浏览器及 Node 版本上得到支持。
 
 ## 参考 Reference
 
 * 使用 Travis 构建 NodeJS 应用：https://docs.travis-ci.com/user/languages/javascript-with-nodejs
-* 迁移指南：npm/yarn 命令比较：https://yarnpkg.com/en/docs/migrating-from-npm
+* 迁移指南 - npm/yarn 命令比较：https://yarnpkg.com/en/docs/migrating-from-npm
 * yarn CLI 简介：https://yarnpkg.com/en/docs/cli/
 
 [Badges: Travis CI]: https://travis-ci.org/linesh-simplicity/peak-chrome-extension.svg?branch=master
