@@ -10,7 +10,7 @@
         "https://*/*"
       ],
       "js": [
-        "src/peak.main.js"
+        "dist/peak.min.js"
       ]
     }
   ],

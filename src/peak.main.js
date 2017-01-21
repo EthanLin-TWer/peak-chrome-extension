@@ -1,5 +1,7 @@
+let what = require('./what');
 "use strict";
 
+console.log(what.what())
 var entryOfToday // initialized after getting data from local storage
 let activeTabUrl = window.location.href
 let landTime = new Date()
