@@ -1,9 +1,12 @@
+import getLandingInfo from './content/getLandingInfo'
 "use strict";
 
 var entryOfToday // initialized after getting data from local storage
-let activeTabUrl = window.location.href
-let landTime = new Date()
+let { currentUrl, landTime } = getLandingInfo()
 
+console.log('get from imported function: ')
+console.log(currentUrl)
+console.log(landTime)
 chrome.storage.local.get(today(landTime), (entry) => {
    "use strict";
    console.log('entry get from chrome.storage.local:')
@@ -17,10 +20,10 @@ function haveItems(entry) {
    return Object.keys(entry).length > 0
 }
 
-if (activeTabUrl.includes('https://mail.google.com/mail/u/') ||
-   activeTabUrl.includes('https://github.com/linesh-simplicity') ||
-   activeTabUrl.includes('https://github.com/linesh-simplicity/linesh-simplicity.github.io/issues')) {
-   console.log('Welcome to ' + activeTabUrl)
+if (currentUrl.includes('https://mail.google.com/mail/u/') ||
+   currentUrl.includes('https://github.com/linesh-simplicity') ||
+   currentUrl.includes('https://github.com/linesh-simplicity/linesh-simplicity.github.io/issues')) {
+   console.log('Welcome to ' + currentUrl)
 }
 
 window.onbeforeunload = () => {
@@ -37,7 +40,7 @@ window.onbeforeunload = () => {
    console.log('getting cached entry of today: ')
    console.log(entryOfToday)
    
-   let found = entryOfToday.find(entry => entry.activeTabUrl === activeTabUrl)
+   let found = entryOfToday.find(entry => entry.currentUrl === currentUrl)
    if (found) {
       found.visits.push(visit)
       found.totalVisitCounts = found.visits.length
@@ -46,7 +49,7 @@ window.onbeforeunload = () => {
       console.log(found)
    } else {
       entryOfToday.push({
-         activeTabUrl,
+         currentUrl,
          visits: [ visit ],
          totalVisitCounts: 1
       })
