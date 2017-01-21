@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test/**/*.spec.js "
+    "test": "mocha test/*.spec.js --require babel-register"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,8 @@
   },
   "homepage": "https://github.com/linesh-simplicity/peak-chrome-plugin#readme",
   "devDependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "babel-register": "^6.22.0",
     "chai": "^3.5.0",
     "mocha": "^3.2.0"
   }
