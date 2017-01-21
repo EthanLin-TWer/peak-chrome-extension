@@ -1,4 +1,3 @@
-import what from './what'
 "use strict";
 
 console.log(what())
