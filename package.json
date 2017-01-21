@@ -2,14 +2,14 @@
   "name": "peak-chrome-plugin",
   "version": "0.0.1",
   "description": "An extension that gives me feedback when I am trying to visit GMail or Github to kill time.",
-  "main": "src/peak.main.js",
+  "main": "src/peak.content.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "test": "mocha test/*.spec.js --require babel-register",
-    "build": "browserify src/peak.main.js -o dist/peak.min.js -t babelify",
-    "buildDev": "watchify src/peak.main.js -o dist/peak.min.js -t babelify"
+    "build": "browserify src/peak.content.js -o dist/peak.min.js -t babelify",
+    "buildDev": "watchify src/peak.content.js -o dist/peak.min.js -t babelify"
   },
   "repository": {
     "type": "git",
