@@ -1,7 +1,8 @@
+import chrome from 'sinon-chrome'
 import { expect } from 'chai'
 import { describe, beforeEach, it } from "mocha";
 
-describe('first controller', () => {
+describe('peak.content.js content script', () => {
    describe('when initialized', () => {
       beforeEach(() => { })
 
