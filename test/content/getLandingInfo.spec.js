@@ -1,4 +1,4 @@
-import { describe, beforeEach, it } from "mocha"
+import { describe, beforeEach, it, afterEach } from "mocha"
 import { expect } from 'chai'
 import getLandingInfo from '../../src/content/getLandingInfo'
 
@@ -11,5 +11,9 @@ describe('getLandingInfo.js', () => {
 
    it('should get landing time and current url from window.location.href', () => {
       expect(getLandingInfo().currentUrl).to.equal('http://target.url.com')
+   })
+   
+   afterEach(() => {
+      delete global.window   
    })
 })
