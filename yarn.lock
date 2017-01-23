@@ -2067,7 +2067,7 @@ sinon-chrome@^2.1.2:
     sinon "^1.17.6"
     urijs "^1.18.2"
 
-sinon@^1.17.6:
+sinon@^1.17.6, sinon@^1.17.7:
   version "1.17.7"
   resolved "https://registry.yarnpkg.com/sinon/-/sinon-1.17.7.tgz#4542a4f49ba0c45c05eb2e9dd9d203e2b8efe0bf"
   dependencies:
