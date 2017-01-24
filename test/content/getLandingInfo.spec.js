@@ -10,7 +10,9 @@ describe('getLandingInfo.js', () => {
    })
 
    it('should get landing time and current url from window.location.href', () => {
-      expect(getLandingInfo().currentUrl).to.equal('http://target.url.com')
+      let landingInfo = getLandingInfo();
+      
+      expect(landingInfo.currentUrl).to.equal('http://target.url.com')
    })
    
    afterEach(() => {
