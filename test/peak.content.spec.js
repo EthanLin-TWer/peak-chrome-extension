@@ -5,7 +5,7 @@ describe('peak.content.js content script', () => {
    describe('when initialized', () => {
       beforeEach(() => { })
 
-      it('should have a hello message variable', () => {
+      it('should ', () => {
          expect('hello world').to.equal('hello world')
       })
    })

@@ -1,17 +1,21 @@
-import getLandingInfo from './content/getLandingInfo'
+import { Timer } from './content/date'
 "use strict";
 
 var entryOfToday // initialized after getting data from local storage
-let { currentUrl, landTime } = getLandingInfo()
+let currentUrl = window.location.href
+let time = new Timer();
+let landTime = time.getLandTime()
 
-chrome.storage.local.get(today(landTime), (entry) => {
+chrome.storage.local.get(time.getKey(), initEntryOfToday)
+
+function initEntryOfToday(entry) {
    "use strict";
    console.log('entry get from chrome.storage.local:')
    console.log(entry)
-   entryOfToday = haveItems(entry) ? entry[today(landTime)] : newEntry()
+   entryOfToday = haveItems(entry) ? entry[time.getKey()] : newEntry()
    console.log('entry of today after initialization:')
    console.log(entryOfToday)
-})
+}
 
 function haveItems(entry) {
    return Object.keys(entry).length > 0
@@ -32,8 +36,7 @@ window.onbeforeunload = () => {
       duration: leaveTime - landTime
    }
 
-   let key = today(landTime)
-   console.log('key: ' + key)
+   console.log('key: ' + time.getKey())
    console.log('getting cached entry of today: ')
    console.log(entryOfToday)
    
@@ -56,7 +59,7 @@ window.onbeforeunload = () => {
    }
 
    let obj = {}
-   obj[today(landTime)] = entryOfToday
+   obj[time.getKey()] = entryOfToday
    chrome.storage.local.set(obj, () => {
       console.log('local storage set:')
       console.log(entryOfToday)
@@ -65,8 +68,4 @@ window.onbeforeunload = () => {
 
 function newEntry() {
    return []
-}
-
-function today(time) {
-   return time.toLocaleDateString()
 }
