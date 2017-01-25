@@ -1,25 +1,7 @@
-import { Timer } from './content/date'
+import { Initializer } from './content/initializer'
 "use strict";
 
-var entryOfToday // initialized after getting data from local storage
-let currentUrl = window.location.href
-let time = new Timer();
-let landTime = time.getLandTime()
-
-chrome.storage.local.get(time.getKey(), initEntryOfToday)
-
-function initEntryOfToday(entry) {
-   "use strict";
-   console.log('entry get from chrome.storage.local:')
-   console.log(entry)
-   entryOfToday = haveItems(entry) ? entry[time.getKey()] : newEntry()
-   console.log('entry of today after initialization:')
-   console.log(entryOfToday)
-}
-
-function haveItems(entry) {
-   return Object.keys(entry).length > 0
-}
+let { currentUrl, landTime, entryOfToday, timer } = new Initializer().initialize()
 
 if (currentUrl.includes('https://mail.google.com/mail/u/') ||
    currentUrl.includes('https://github.com/linesh-simplicity') ||
@@ -36,7 +18,7 @@ window.onbeforeunload = () => {
       duration: leaveTime - landTime
    }
 
-   console.log('key: ' + time.getKey())
+   console.log('key: ' + timer.getKey())
    console.log('getting cached entry of today: ')
    console.log(entryOfToday)
    
@@ -59,7 +41,7 @@ window.onbeforeunload = () => {
    }
 
    let obj = {}
-   obj[time.getKey()] = entryOfToday
+   obj[timer.getKey()] = entryOfToday
    chrome.storage.local.set(obj, () => {
       console.log('local storage set:')
       console.log(entryOfToday)

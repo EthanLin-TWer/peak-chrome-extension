@@ -5,8 +5,8 @@ describe('peak.content.js content script', () => {
    describe('when initialized', () => {
       beforeEach(() => { })
 
-      it('should ', () => {
-         expect('hello world').to.equal('hello world')
+      it('should init landing time and active url', () => {
+         expect()
       })
    })
 })
