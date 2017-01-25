@@ -13,6 +13,7 @@ describe('getLandingInfo.js', () => {
       let landingInfo = getLandingInfo();
       
       expect(landingInfo.currentUrl).to.equal('http://target.url.com')
+      expect(landingInfo.landTime).to.be.an.instanceOf(Date)
    })
    
    afterEach(() => {
