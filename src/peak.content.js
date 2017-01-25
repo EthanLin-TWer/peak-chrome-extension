@@ -4,9 +4,6 @@ import getLandingInfo from './content/getLandingInfo'
 var entryOfToday // initialized after getting data from local storage
 let { currentUrl, landTime } = getLandingInfo()
 
-console.log('get from imported function: ')
-console.log(currentUrl)
-console.log(landTime)
 chrome.storage.local.get(today(landTime), (entry) => {
    "use strict";
    console.log('entry get from chrome.storage.local:')
